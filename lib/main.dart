@@ -24,7 +24,7 @@ class VideoTrimmerApp extends ConsumerWidget {
     final themeMode = ref.watch(themeModeProvider);
     
     return MaterialApp(
-      title: 'Ky-Cut',
+      title: 'KyStudio',
       debugShowCheckedModeBanner: false,
       themeMode: themeMode,
       theme: ThemeData(

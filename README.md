@@ -1,22 +1,35 @@
-# Ky-Cut: Pro Video Trimmer
+# KyStudio: The Ultimate Media Editor
 
-A high-performance, open-source video trimming application built with Flutter. **Ky-Cut** allows users to pick videos, select multiple segments (clips) with frame-accurate precision, and export them directly to their gallery.
+A high-performance, open-source media editing application built with Flutter. **KyStudio** (formerly Ky-Cut) provides a suite of tools for processing video and audio files with ease, right from your device.
 
 ## 🚀 Features
 
-- **Multi-Clip Trimming**: Select and manage multiple segments from a single video file.
-- **Precise Export**: Powered by FFmpeg for frame-accurate video processing.
-- **High-Performance Preview**: Smooth video playback using the `media_kit` engine.
-- **Batch Processing**: Export all selected clips in one go with real-time progress tracking.
-- **Gallery Integration**: Automatically saves exported videos to your device's photo library/gallery.
-- **Modern UI/UX**: Clean interface with full support for Light and Dark modes.
-- **Real-time Progress**: Visual feedback during the export process.
+KyStudio offers three main powerful tools:
+
+1. **Video Trimmer**: 
+   - Select and manage multiple segments from a single video file.
+   - Frame-accurate trimming powered by FFmpeg.
+   - Batch export all selected clips to your gallery.
+2. **Video to Audio**: 
+   - Convert video files directly into audio.
+   - Support for multiple output formats: AAC (.m4a), MP3, WAV, and FLAC.
+   - Native encoders for fast and reliable conversion.
+3. **Audio Cutter**:
+   - Trim and cut audio files (MP3, WAV, M4A, etc.).
+   - Multi-clip support: cut multiple segments from one audio file.
+   - Lightning-fast processing with precise duration cutting.
+
+### Key Highlights:
+- **High-Performance Preview**: Smooth video and audio playback using the `media_kit` engine.
+- **Gallery Integration**: Automatically saves exported videos and audio to your device's library.
+- **Modern UI/UX**: Clean, card-based interface with full support for Light and Dark modes.
+- **Real-time Progress**: Visual feedback and background notifications during the export process.
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [Flutter](https://flutter.dev)
 - **State Management**: [Riverpod](https://riverpod.dev)
-- **Video Engine**: [Media Kit](https://media-kit.com)
+- **Media Engine**: [Media Kit](https://media-kit.com)
 - **Processing Engine**: [FFmpeg Kit](https://github.com/ffmpeg_kit/ffmpeg-kit)
 - **File Handling**: File Picker & Path Provider
 - **Storage**: Gal (Gallery Access Layer)
@@ -58,18 +71,24 @@ Before you begin, ensure you have the following installed:
 
 ## 📱 Permissions
 
-Ky-Cut requires the following permissions to function correctly:
-- **Videos/Photos**: To select input videos and save exported clips.
+KyStudio requires the following permissions to function correctly:
+- **Videos/Photos/Audio**: To select input media and save exported clips.
 - **Notifications**: To notify you when the export process is complete.
 - **Storage**: For temporary file processing.
 
 ## 📖 Usage
 
-1. **Pick a Video**: Tap on "Select a Video" from the home screen.
+### Video Trimmer & Audio Cutter
+1. **Select Media**: Tap on the respective card to pick a video or audio file.
 2. **Trim**: Use the range slider to select the start and end points of your clip.
 3. **Add Clip**: Tap "Add Clip" to save the selection to your export list.
-4. **Repeat**: You can add as many clips as you want from the same video.
-5. **Export**: Tap "Export All" to process and save all clips to your gallery.
+4. **Repeat**: Add as many clips as you want from the same file.
+5. **Export**: Tap "Export All" to process and save all clips.
+
+### Video to Audio
+1. **Select Video**: Tap on the "Video to MP3" (Video to Audio) card to pick a video.
+2. **Choose Format**: Select your desired output format (AAC, MP3, WAV, FLAC).
+3. **Convert**: Tap the convert button and wait for the extraction to complete.
 
 ## 📄 License
 

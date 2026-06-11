@@ -1,13 +1,16 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    kotlin("android")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    namespace = "com.example.video_trimmer"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    namespace = "com.kycaine.videotrimmer"
+    compileSdk = 36
+    ndkVersion = "27.0.12077973"
+
+    // Set the build directory to the project root's build folder
+    layout.buildDirectory.set(file("${project.projectDir}/../../build/app"))
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -20,7 +23,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.video_trimmer"
+        applicationId = "com.kycaine.videotrimmer"
         minSdk = 24
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

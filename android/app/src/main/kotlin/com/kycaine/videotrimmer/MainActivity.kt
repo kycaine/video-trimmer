@@ -1,4 +1,4 @@
-package com.example.video_trimmer
+package com.kycaine.videotrimmer
 
 import io.flutter.embedding.android.FlutterActivity
 

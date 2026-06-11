@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:label="Ky-Cut"
+        android:label="KyStudio"
         android:icon="@mipmap/ic_launcher">
         
         <activity

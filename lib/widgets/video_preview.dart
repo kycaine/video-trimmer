@@ -14,53 +14,85 @@ class VideoPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Column(
       children: [
-        Video(
-          controller: controller,
-          controls: (state) => const SizedBox.shrink(),
+        // Video display
+        Expanded(
+          child: Video(
+            controller: controller,
+            controls: (state) => const SizedBox.shrink(),
+          ),
         ),
-        _ControlsOverlay(player: player),
+        const SizedBox(height: 8),
+        // Playback controls: rewind 5s, play/pause, forward 5s
+        _VideoControls(player: player, colorScheme: colorScheme),
       ],
     );
   }
 }
 
-class _ControlsOverlay extends StatelessWidget {
-  const _ControlsOverlay({required this.player});
-
+/// Kontrol playback video: rewind 5s, play/pause, forward 5s.
+class _VideoControls extends StatelessWidget {
   final Player player;
+  final ColorScheme colorScheme;
+
+  const _VideoControls({
+    required this.player,
+    required this.colorScheme,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        player.playOrPause();
+    return StreamBuilder<bool>(
+      stream: player.stream.playing,
+      builder: (context, snapshot) {
+        final isPlaying = snapshot.data ?? false;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Rewind 5s
+            IconButton(
+              icon: const Icon(Icons.replay_5),
+              iconSize: 32,
+              color: colorScheme.onSurface,
+              onPressed: () {
+                final pos = player.state.position;
+                final newPos = pos - const Duration(seconds: 5);
+                player.seek(newPos < Duration.zero ? Duration.zero : newPos);
+              },
+            ),
+            const SizedBox(width: 8),
+            // Play / Pause
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: colorScheme.primary,
+              ),
+              child: IconButton(
+                icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                iconSize: 36,
+                color: colorScheme.onPrimary,
+                onPressed: () => player.playOrPause(),
+              ),
+            ),
+            const SizedBox(width: 8),
+            // Forward 5s
+            IconButton(
+              icon: const Icon(Icons.forward_5),
+              iconSize: 32,
+              color: colorScheme.onSurface,
+              onPressed: () {
+                final pos = player.state.position;
+                final dur = player.state.duration;
+                final newPos = pos + const Duration(seconds: 5);
+                player.seek(newPos > dur ? dur : newPos);
+              },
+            ),
+          ],
+        );
       },
-      child: Center(
-        child: StreamBuilder<bool>(
-          stream: player.stream.playing,
-          builder: (context, snapshot) {
-            final isPlaying = snapshot.data ?? false;
-            return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 50),
-              child: isPlaying
-                  ? const SizedBox.shrink()
-                  : Container(
-                      color: Colors.black26,
-                      child: const Center(
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                          size: 60.0,
-                        ),
-                      ),
-                    ),
-            );
-          },
-        ),
-      ),
     );
   }
 }
